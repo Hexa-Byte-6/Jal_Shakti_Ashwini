@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'custom-widgets/card_widget.dart';
+
+import './screens/before_general_question_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,20 +15,12 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text(title),
         ),
-        body: ListView(
-          children: <Widget>[
-            
-            CardWidget1(),
-            CardWidget2(),
-            CardWidget3(),
-            CardWidget1(),
-            CardWidget2(),
-            CardWidget3(),
-
-            
-          ],
+          body: BeforeGeneralQuestionScreen(),
         ),
-      ),
     );
   }
 }
+
+
+
+
