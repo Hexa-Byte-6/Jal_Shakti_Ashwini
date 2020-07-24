@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 //Form Screen
 class UserDetailScreen extends StatefulWidget {
+
+  final Map<dynamic,dynamic> gen2;
+  UserDetailScreen({Key key,@required this.gen2}) : super(key : key);
   @override
   State<StatefulWidget> createState() {
     return UserDetailScreenState();
@@ -10,6 +13,9 @@ class UserDetailScreen extends StatefulWidget {
 }
 
 class UserDetailScreenState extends State<UserDetailScreen> {
+
+  Map<dynamic,dynamic> gen2;
+  UserDetailScreenState({this.gen2});
   String _name;
   String _savedstate;
   String _saveddistrict;
@@ -25,7 +31,7 @@ class UserDetailScreenState extends State<UserDetailScreen> {
   Widget _buildName() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Name'),
-      keyboardType: TextInputType.text,
+      //keyboardType: TextInputType.text,
       validator: (String value) {
         if (value.isEmpty) {
           return 'Name Required';
@@ -116,6 +122,7 @@ class UserDetailScreenState extends State<UserDetailScreen> {
 /////////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       resizeToAvoidBottomPadding: false,
         body:   Padding(
@@ -153,6 +160,16 @@ class UserDetailScreenState extends State<UserDetailScreen> {
                   print("State  : "+_savedstate);
                   print("District :  "+_saveddistrict);
 
+                  Map userdata = {"name" : _name, "state": _savedstate, "district": _saveddistrict };
+                  print("User Data .................................................");
+                  print(userdata);
+                  
+                  print("Question answer data.................................");
+                  print(widget.gen2);
+                    Map storeddata = {"userdata" : userdata, "question_answer": widget.gen2 };
+                    print("Send the data to server................................................");
+                    print(storeddata);
+
                   //Send the data to server
                 },
               )
@@ -168,5 +185,19 @@ class UserDetailScreenState extends State<UserDetailScreen> {
     );
         
         
+  }
+}
+
+
+class GetData extends StatelessWidget {
+
+  final Map<String , String> data;
+  GetData({this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
   }
 }

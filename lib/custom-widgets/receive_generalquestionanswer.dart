@@ -3,6 +3,8 @@ import '../classes/question_answer_data.dart';
 import 'general_card.dart';
 import '../screens/before_detailed_question_screen.dart';
 
+
+
 class ReceiveGeneralQuestionAnswer extends StatefulWidget {
   @override
   _ReceiveGeneralQuestionAnswerState createState() => _ReceiveGeneralQuestionAnswerState();
@@ -12,28 +14,36 @@ class _ReceiveGeneralQuestionAnswerState extends State<ReceiveGeneralQuestionAns
   final generalquestionanswer = QuestionAnswer.generalquestionanswer;
  
  //contains the questions number and corresponding answer
-  Map<String, String> surveyData = {}; 
+  Map<String, String> surveyData0 = {}; 
     int _check = 0;
   @override
   void initState() {
     super.initState();
     for (int i = 0; i < generalquestionanswer.length; i++) {
-      surveyData[i.toString()] = '';      //data is stored here
+      surveyData0[i.toString()] = '';      //data is stored here
     }
   }
 
   onAnswerChanged(int index, String value) {
     setState(() {
-      surveyData[index.toString()] = value;    
+      surveyData0[index.toString()] = value;    
        if(value != ''){
           _check++;
         }       
     });
    
     print("Survey data:");
-    print(surveyData);
+    print(surveyData0);
   }
 
+  void storedata(){
+
+  // addAll() method
+  final generalsurvey = surveyData0;
+  print("Generalsurvey :::::::::::::::::::::::::::::::::::");
+  print(generalsurvey);
+
+  }
 
  
 
@@ -58,10 +68,13 @@ Widget build(BuildContext context) {
                   color: Colors.blue,
                   onPressed: () {
                    if(_check >= generalquestionanswer.length){
+                     storedata();
                      Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => 
-                    BeforeDetailedQuestionScreen()),
+                    BeforeDetailedQuestionScreen(
+                        gen : surveyData0,
+                    )),
                    );//send survey data to server
                    }else{
                      SnackBar(content: Text("Please fill all the fields"));

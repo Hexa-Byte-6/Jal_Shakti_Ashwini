@@ -152,12 +152,12 @@ class _MultipleChoiceImageCardState extends State<MultipleChoiceImageCard> {
 
 //ImageChoiceCard
 class ImageChoiceCard extends StatefulWidget {
-  final String ques, imgurl;
+  final String ques;
   final List<String> ans;
   final index;
   final Function onAnswerChanged;
 
-  ImageChoiceCard(this.index, this.onAnswerChanged, this.ques, this.imgurl, this.ans);
+  ImageChoiceCard(this.index, this.onAnswerChanged, this.ques, this.ans);
 
 
 @override
@@ -180,7 +180,7 @@ class _ImageChoiceCardState extends State<ImageChoiceCard> {
           ),
           Column(
             children: <Widget>[
-              //Image.asset(widget.imgurl),
+              
               Column(
                 children: createRadioListOptions(
                     widget.ans, widget.onAnswerChanged, widget.index),
